@@ -1,17 +1,13 @@
-# Imagen base ligera
 FROM python:3.12-slim
 
-# Establecer directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar archivo de dependencias
+# Instalar dependencias
 COPY requirements.txt .
-
-# Instalar dependencias sin caché
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el resto del proyecto
-COPY . .
+# Copiar el código de la aplicación
+COPY src/ /app/src/
 
-# Ejecutar la aplicación
-CMD ["python", "main.py"]
+# Ejecutar la app
+CMD ["python", "src/main.py"]
